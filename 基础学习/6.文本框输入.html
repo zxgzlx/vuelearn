@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="Application">
+        <input v-model="textField"/>
+        <p>文本输入框内容：{{textField}}</p>
+        <textarea v-model="textarea"></textarea>
+        <p style="white-space: pre-line;">多行文本内容：{{textarea}}</p>
+        <input type="checkbox" value="测试" v-model="checkbox"/>单个测试
+        <p>{{checkbox}}</p>
+        <input type="checkbox" value="足球" v-model="checkList"/>足球
+        <input type="checkbox" value="篮球" v-model="checkList"/>篮球
+        <input type="checkbox" value="排球" v-model="checkList"/>排球
+        <p>{{checkList}}</p>
+        <input type="radio" value="男" v-model="sex">男
+        <input type="radio" value="女" v-model="sex">女
+        <p>{{sex}}</p>
+        <select v-model="select">
+            <option>男</option>
+            <option>女</option>
+        </select>
+        <p>{{select}}</p>
+        <!-- 多选框，按ctrl进行多选 -->
+        <select v-model="selectList" multiple>
+            <option>足球</option>
+            <option>篮球</option>
+            <option>排球</option>
+        </select>
+        <p>{{selectList}}</p>
+        <!-- 懒加载 -->
+        <input v-model.lazy="textField">
+        <p>懒加载文本输入框内容：{{textField}}</p>
+        <input v-model.trim="textField">
+        <p>去掉空格文本输入框内容：{{textField}}</p>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    textField:"",
+                    textarea:"",
+                    checkbox:false,
+                    checkList:[],
+                    sex: "",
+                    select: "1",
+                    selectList: [],
+                }
+            },
+        }
+        Vue.createApp(App).mount("#Application")
+    </script>
+</body>
+</html>
