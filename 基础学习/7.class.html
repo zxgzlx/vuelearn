@@ -23,7 +23,10 @@
         <div :class="style">
             示例文案
         </div>
-        <div :class="redClass, fontClass">
+        <div :class="[redClass, fontClass]">
+            示例文案
+        </div>
+        <div :style="{color:textColor,fontSize:textFont}">
             示例文案
         </div>
     </div> 
@@ -38,7 +41,9 @@
                         red:true,
                     },
                     redClass:"red",
-                    fontClass:"font"
+                    fontClass:"font",
+                    textColor:"green",
+                    textFont:"50px"
                 }
             }
         }
