@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="Application">
+        <my-alert title="按钮1" @myclick="appfunc"></my-alert>
+        <my-alert title="按钮2"></my-alert>
+    </div>
+    <script>
+        const App = Vue.createApp({
+            methods: {
+                appfunc(param, param1) {
+                    console.log("点击了自定义组件" + param + param1)
+                }
+            }
+        })
+        const alertComponent = {
+            // data() {
+            //     return {
+            //         msg: "警告提示",
+            //         count: 0
+            //     }
+            // },
+            // methods: {
+            //     click() {
+            //         alert(this.msg + this.count++)
+            //     }
+            // },
+            props: ["title"],
+            // template:`<div><button @click="$emit('myclick', title, 'haha')">{{title}}</button></div>`
+            methods: {
+                click() {
+                    console.log("组件内部逻辑")
+                    this.$emit('myclick', this.title)
+                }
+            },
+            template:`<div><button @click="click">{{title}}</button></div>`
+        }
+        App.component("my-alert",alertComponent)
+        App.mount("#Application")
+    </script>
+</body>
+</html>
