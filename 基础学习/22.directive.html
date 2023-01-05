@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="Application">
+        <input v-getfocus/>
+        <sub-com></sub-com>
+    </div>
+    <script>
+        const App = Vue.createApp({})
+        App.directive('getfocus', {
+            mounted(element) {
+                console.log("组件获得了焦点")
+                element.focus()
+            }
+        })
+        const sub = {
+            directives: {
+                hahah: {
+                    mounted(el, param) {
+                        console.log("参数：", param)
+                    }
+                }
+            },
+            template: `
+                <div v-hahah:custom="1"></div>
+            `,
+            mounted() {
+                console.log(this.version)
+            }
+        }
+        App.component("sub-com", sub)
+        App.mount("#Application")
+    </script>
+</body>
+</html>
